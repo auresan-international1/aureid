@@ -1,0 +1,39 @@
+nano /etc/systemd/system/aureid.service
+
+
+
+[Unit]
+
+Description=Aureid Flask Application
+
+After=network.target
+
+
+
+[Service]
+
+User=root
+
+Group=root
+
+WorkingDirectory=/var/www/aureid/aureid
+
+Environment="PATH=/var/www/aureid/aureid/env/bin"
+
+ExecStart=/var/www/aureid/aureid/env/bin/gunicorn \
+
+    --workers 2 \
+
+    --bind 127.0.0.1:8001 \
+
+    app:app
+
+Restart=always
+
+RestartSec=5
+
+
+
+[Install]
+
+WantedBy=multi-user.target

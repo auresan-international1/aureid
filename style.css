@@ -1,0 +1,859 @@
+/* ================= BASE & RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+  line-height: 1.5;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+/* ================= VARIABLES ================= */
+:root {
+  --primary-red: #b30000;
+  --dark-red: #8b0000;
+  --teal: #6ca6b8;
+  --light-gray: #f4f4f4;
+  --yellow: #ffcc00;
+  --text-dark: #222;
+  --text-light: #666;
+}
+
+/* ================= CUSTOM RED LINING / DIVIDER ================= */
+.red-lining {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.red-lining .top-line {
+  height: 42px;
+  background-color: var(--dark-red);
+}
+
+.red-lining .middle-line {
+  height: 10px;
+  background-color: #ffffff;
+}
+
+.red-lining .bottom-line {
+  height: 8px;
+  background-color: var(--dark-red);
+}
+
+/* ================= NAVIGATION ================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: #fff;
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--dark-red);
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+  position: relative;
+  padding: 40px 50px 0;
+  background: linear-gradient(to right, #ffffff 0%, #fdf5f5 100%);
+  overflow: hidden;
+}
+
+.hero-bg-heart {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: url('assets/11.webp') no-repeat center center;
+  background-size: cover;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-text {
+  flex: 1 1 500px;
+}
+
+.hero-text h1 {
+  font-size: 4rem;
+  color: var(--dark-red);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.hero-text h2 {
+  font-size: 2.2rem;
+  color: #000;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fce8e8;
+  padding: 15px 25px;
+  border-radius: 50px;
+  max-width: 480px;
+}
+
+.feature-icon {
+  font-size: 1.8rem;
+  background: #fff;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.feature-text strong {
+  display: block;
+  font-size: 1.05rem;
+  color: #000;
+}
+
+.feature-text span {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.hero-product {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.hero-product img {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+/* Form & Pricing Bar */
+.order-bar {
+  background: #f0f0f0;
+  padding: 30px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 3;
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 0 0 300px;
+}
+
+.order-form input {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+}
+
+.order-form button {
+  background: var(--yellow);
+  border: none;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s;
+}
+
+.order-form button:hover {
+  transform: scale(1.02);
+}
+
+.pricing {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.discount-badge {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: transparent;
+  padding: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 0;
+  transform: rotate(180deg);
+  color: #000;
+  letter-spacing: 2px;
+}
+
+.price-old {
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: line-through;
+  color: #333;
+  margin-right: 10px;
+}
+
+.price-new {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price-new span {
+  font-size: 2.5rem;
+  color: var(--primary-red);
+  font-weight: 800;
+}
+
+/* ================= WHY SECTION ================= */
+.why-section {
+  position: relative;
+  background: var(--teal);
+  padding-top: 80px;
+}
+
+.why-badge {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  background: #fff;
+  padding: 15px 40px;
+  border-radius: 12px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.why-badge span {
+  color: var(--primary-red);
+}
+
+.why-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-woman {
+  flex: 0 0 350px;
+  height: 400px;
+  background: url('assets/9.webp') no-repeat center bottom;
+  background-size: cover;
+  border-radius: 10px 10px 0 0;
+  margin-right: -50px;
+  z-index: 2;
+}
+
+.why-products {
+  display: flex;
+  gap: 20px;
+  z-index: 3;
+  margin-bottom: -20px;
+}
+
+.why-products img {
+  max-width: 100%;
+  height: auto;
+  max-height: 350px;
+}
+
+.why-text {
+  background: #fff;
+  padding: 60px 50px 40px;
+}
+
+.why-text p {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.why-text strong {
+  color: var(--primary-red);
+}
+
+/* ================= SYMPTOMS SECTION ================= */
+.symptoms-section {
+  position: relative;
+  background-color: #f0f4f7;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%23e0e6eb' stroke-width='1'/%3E%3C/svg%3E");
+  padding: 80px 50px 0;
+  overflow: hidden;
+}
+
+.symptoms-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.symptoms-section h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.symptoms-section p {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.symptoms-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
+  gap: 20px;
+}
+
+.symptom-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 160px;
+  gap: 15px;
+}
+
+.symptom-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(230, 0, 0, 0.3);
+  border: 3px solid #fff;
+  overflow: hidden;
+  background: #e60000;
+}
+
+.symptom-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.symptom-label {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #000;
+}
+
+.symptoms-hand {
+  position: absolute;
+  right: 50px;
+  bottom: 0;
+  width: 300px;
+  height: 400px;
+  background: url('assets/10.webp') no-repeat center bottom;
+  background-size: contain;
+  z-index: 1;
+}
+
+/* ================= HOW IT WORKS SECTION ================= */
+.how-section {
+  position: relative;
+  padding: 80px 50px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.how-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 200'%3E%3Cpath d='M0,100 L150,100 L170,50 L190,150 L210,80 L230,100 L400,100 L420,60 L440,140 L460,90 L480,100 L650,100 L670,40 L690,160 L710,70 L730,100 L900,100 L920,50 L940,150 L960,80 L980,100 L1000,100' fill='none' stroke='%23ffcccc' stroke-width='4'/%3E%3C/svg%3E") no-repeat center center;
+  background-size: cover;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.how-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.how-container {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 600px;
+  z-index: 2;
+}
+
+.how-product-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.how-product-center img {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+.how-pills-left, .how-plant-left, .how-plant-right {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background-size: cover;
+  background-position: center;
+  z-index: 4;
+}
+
+.how-pills-left {
+  left: 15%;
+  top: 15%;
+  background-image: url('assets/20.png');
+}
+
+.how-plant-left {
+  left: 20%;
+  bottom: 10%;
+  background-image: url('assets/21.webp');
+}
+
+.how-plant-right {
+  right: 18%;
+  top: 25%;
+  background-image: url('assets/22.webp');
+}
+
+.red-curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.how-annotation {
+  position: absolute;
+  z-index: 6;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #000;
+  max-width: 220px;
+}
+
+.annotation-left {
+  left: 5%;
+  top: 5%;
+}
+
+.annotation-right {
+  right: 8%;
+  top: 55%;
+}
+
+.annotation-bottom {
+  left: 10%;
+  bottom: 15%;
+}
+
+/* ================= REVIEWS SECTION ================= */
+.reviews-section {
+  position: relative;
+  background-color: #f0f4f7;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%23e0e6eb' stroke-width='1'/%3E%3C/svg%3E");
+  padding: 80px 50px;
+  overflow: hidden;
+}
+
+.reviews-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 50px;
+}
+
+.reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.review-card {
+  background: #fff;
+  border: 1px solid var(--primary-red);
+  border-radius: 8px;
+  padding: 20px;
+  flex: 1 1 300px;
+  max-width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.review-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-meta strong {
+  font-size: 1rem;
+  color: #000;
+}
+
+.review-meta span {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.review-stars {
+  font-size: 1.2rem;
+  color: #ffd700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.review-stars span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+  margin-left: 5px;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (max-width: 1024px) {
+  .hero-text h1 { font-size: 3rem; }
+  .hero-text h2 { font-size: 1.8rem; }
+  .price-new { font-size: 2.8rem; }
+  .price-new span { font-size: 2rem; }
+}
+
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 20px 20px 0;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .feature-item {
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .hero-product {
+    margin-top: 30px;
+  }
+
+  .hero-bg-heart {
+    opacity: 0.3;
+    width: 80%;
+  }
+
+  .order-bar {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+  
+  .pricing {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .discount-badge {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  
+  .why-section {
+    padding-top: 40px;
+  }
+
+  .why-badge {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 auto 20px;
+    text-align: center;
+    display: block;
+    width: fit-content;
+    font-size: 2rem;
+  }
+  
+  .why-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .why-woman {
+    display: none;
+  }
+  
+  .why-products {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  
+  .why-text {
+    padding: 30px 20px;
+  }
+
+  .symptoms-section {
+    padding: 40px 20px 0;
+  }
+  
+  .symptoms-grid {
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .symptoms-hand {
+    display: none;
+  }
+  
+  .how-section {
+    padding: 40px 20px;
+  }
+
+  .how-container { 
+    height: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  
+  .how-product-center { 
+    position: relative; 
+    left: auto; 
+    top: auto; 
+    transform: none; 
+    margin: 10px 0; 
+  }
+  
+  .how-pills-left, .how-plant-left, .how-plant-right { 
+    position: relative; 
+    left: auto; 
+    right: auto; 
+    top: auto; 
+    bottom: auto; 
+    transform: none; 
+    margin: 10px auto; 
+  }
+  
+  .how-annotation { 
+    position: relative; 
+    left: auto; 
+    right: auto; 
+    top: auto; 
+    bottom: auto; 
+    text-align: center; 
+    margin: 10px 0; 
+    max-width: 100%;
+  }
+  
+  .red-curve { 
+    display: none; 
+  }
+
+  .reviews-section {
+    padding: 40px 20px;
+  }
+
+  .reviews-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .review-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-text h2 {
+    font-size: 1.4rem;
+  }
+
+  .feature-item {
+    padding: 10px 15px;
+    border-radius: 20px;
+  }
+  
+  .feature-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+
+  .symptoms-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .symptom-item {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .price-new {
+    font-size: 2.2rem;
+  }
+  
+  .price-new span {
+    font-size: 1.5rem;
+  }
+
+  .price-old {
+    font-size: 1.2rem;
+  }
+}
