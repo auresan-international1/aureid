@@ -40,15 +40,41 @@ def submit_form():
         if not name or not phone:
             return jsonify({"error": "Name and phone are required"}), 400
 
-        doc_ref = db.collection('leads').add({
+        # Optional fields from client
+        priority = data.get('priority', 'normal')
+        source = data.get('source', 'website')
+        status = data.get('status', 'new')
+
+        # Allow client to supply created_at/updated_at (ISO string), otherwise use SERVER_TIMESTAMP
+        created_at = data.get('created_at') if data.get('created_at') else firestore.SERVER_TIMESTAMP
+        updated_at = data.get('updated_at') if data.get('updated_at') else firestore.SERVER_TIMESTAMP
+
+        add_result = db.collection('leads').add({
             'name': name,
             'phone': phone,
-            'timestamp': firestore.SERVER_TIMESTAMP,
-            'status': 'new'
+            'priority': priority,
+            'source': source,
+            'status': status,
+            'created_at': created_at,
+            'updated_at': updated_at
         })
 
+        # db.collection().add() may return a tuple in different orders depending on
+        # firestore client version. Find the DocumentReference (has attribute 'id').
+        if isinstance(add_result, tuple) or isinstance(add_result, list):
+            if hasattr(add_result[0], 'id'):
+                doc_ref = add_result[0]
+            elif len(add_result) > 1 and hasattr(add_result[1], 'id'):
+                doc_ref = add_result[1]
+            else:
+                # Fallback: pick first element
+                doc_ref = add_result[0]
+        else:
+            # If add_result is a DocumentReference
+            doc_ref = add_result
+
         print(f"✅ Lead saved: {name} - {phone}")
-        return jsonify({"message": "Order received successfully!", "id": doc_ref[1].id}), 201
+        return jsonify({"message": "Order received successfully!", "id": doc_ref.id}), 201
 
     except Exception as e:
         print(f"❌ Error saving to Firebase: {e}")
