@@ -223,36 +223,6 @@
     <p>© 2026 DiaFormula. All rights reserved.</p>
   </footer>
 
-  <!-- Form Submission Script -->
-  <script>
-    document.getElementById('order-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const name = document.getElementById('fullname').value;
-      const phone = document.getElementById('phone').value;
-      const submitButton = this.querySelector('button');
-      submitButton.disabled = true;
-      submitButton.textContent = 'SENDING...';
-
-      try {
-        const response = await fetch('http://127.0.0.1:5000/submit-form', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: name, phone: phone })
-        });
-        const result = await response.json();
-        if (response.ok) {
-          alert('✅ Thank you! Your order has been received.');
-          this.reset();
-        } else {
-          alert('❌ Error: ' + (result.error || 'Something went wrong.'));
-        }
-      } catch (error) {
-        alert('❌ Could not connect to the server.');
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'TRY IT NOW!';
-      }
-    });
-  </script>
+ <script src="script.js"></script>
 </body>
 </html>
