@@ -4,12 +4,15 @@ document.getElementById('order-form').addEventListener('submit', async function(
     const phone = document.getElementById('phone').value;
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/submit-form', {
+        // Use relative URL so it works on both localhost and production
+        const response = await fetch('/submit-form', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, phone })
         });
+
         const result = await response.json();
+
         if (response.ok) {
             alert('Thank you! Your order has been received.');
             this.reset();
