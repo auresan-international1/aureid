@@ -36,9 +36,23 @@ def submit_form():
 
         name = data.get('name')
         phone = data.get('phone')
+        productname = data.get('productname', 'DiaFormula')
 
         if not name or not phone:
             return jsonify({"error": "Name and phone are required"}), 400
+
+        # Generate auto-incrementing ID (DA-001, DA-002, etc.)
+        counter_ref = db.collection('counters').document('leads')
+        counter_doc = counter_ref.get()
+        if counter_doc.exists:
+            count = counter_doc.to_dict().get('count', 0) + 1
+        else:
+            count = 1
+        
+        lead_id = f"DA-{count:03d}"
+        
+        # Update counter
+        counter_ref.set({'count': count})
 
         # Optional fields from client
         priority = data.get('priority', 'normal')
@@ -50,8 +64,10 @@ def submit_form():
         updated_at = data.get('updated_at') if data.get('updated_at') else firestore.SERVER_TIMESTAMP
 
         add_result = db.collection('leads').add({
+            'id': lead_id,
             'name': name,
             'phone': phone,
+            'productname': productname,
             'priority': priority,
             'source': source,
             'status': status,
@@ -73,8 +89,8 @@ def submit_form():
             # If add_result is a DocumentReference
             doc_ref = add_result
 
-        print(f"✅ Lead saved: {name} - {phone}")
-        return jsonify({"message": "Order received successfully!", "id": doc_ref.id}), 201
+        print(f"✅ Lead saved: {lead_id} - {name} - {phone} - {productname}")
+        return jsonify({"message": "Order received successfully!", "id": doc_ref.id, "lead_id": lead_id}), 201
 
     except Exception as e:
         print(f"❌ Error saving to Firebase: {e}")
